@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Amari 💕</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      font-family: 'Poppins', Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 45px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      max-width: 420px;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff4d6d;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 24px;
+      margin: 12px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background: #e0e0e0;
+      position: relative;
+    }
+
+    /* Photos */
+    .photos {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .photos img {
+      width: 120px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Falling hearts */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 20px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-10vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Music -->
+  <iframe
+    src="https://www.youtube.com/embed/Oa_RSwwpPaA?autoplay=1&loop=1&playlist=Oa_RSwwpPaA&controls=0"
+    allow="autoplay"
+    style="display:none;">
+  </iframe>
+
+  <!-- Hearts -->
+  <div class="hearts"></div>
+
+  <!-- Card -->
+  <div class="card">
+    <h1>Amari, will you be my Valentine? 💖</h1>
+
+    <p>
+      I don’t need a special day to like you,<br>
+      but I’d really love to spend this one with you 💌
+    </p>
+
+    <!-- Photos -->
+    <div class="photos">
+      <img src="photo1.jpg" alt="Us 💕">
+      <img src="photo2.jpg" alt="Us 💕">
+    </div>
+
+    <div class="buttons">
+      <button id="yes">Yes, obviously 💕</button>
+      <button id="no">No 😒</button>
+    </div>
+  </div>
+
+  <script>
+    // No button runs away
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    // YES button
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <div style="text-align:center; margin-top:25vh;">
+          <h1 style="color:#ff4d6d;">It’s a date 💖</h1>
+          <p style="font-size:22px;">
+            I knew you’d say yes, Amari 😌<br>
+            Can’t wait to spend Valentine’s Day with you 💕
+          </p>
+        </div>
+      `;
+    });
+
+    // Falling hearts
+    const heartsContainer = document.querySelector(".hearts");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💖";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+      heart.style.fontSize = Math.random() * 10 + 15 + "px";
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
